@@ -5,7 +5,15 @@ const bodyParser = require("body-parser");
 require("dotenv").config();
 
 const app = express();
-app.use(cors());
+
+// Enable CORS for your frontend domain (localhost:5173)
+const corsOptions = {
+  origin: "http://localhost:5173", // Allow your frontend origin
+  methods: ["GET", "POST"],
+  allowedHeaders: ["Content-Type"],
+};
+
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
@@ -36,6 +44,12 @@ app.post("/send-email", async (req, res) => {
     console.error(error);
     res.status(500).send("Error sending email");
   }
+});
+
+app.get("/", (req, res) => {
+  return res.status(200).json({
+    message: "Api working successfully",
+  });
 });
 
 app.listen(5000, () => console.log("Server running on port 5000"));
