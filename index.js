@@ -8,7 +8,7 @@ const app = express();
 
 // Enable CORS for your frontend domain (localhost:5173)
 const corsOptions = {
-  origin: "http://localhost:5173", // Allow your frontend origin
+  origin: "trinai.in", // Allow your frontend origin
   methods: ["GET", "POST"],
   allowedHeaders: ["Content-Type"],
 };
